@@ -1,60 +1,84 @@
 import { StatusBar } from "expo-status-bar"
 import { useEffect, useState } from "react"
-import { SafeAreaView, StyleSheet } from "react-native"
-import { TabNavigation } from "./src/components/tab-navigation"
+import { SafeAreaView, StyleSheet, View } from "react-native"
+import { LessonSelector } from "./src/components/lesson-selector"
+import { lessons } from "./src/config/lessons"
+import { ThemeProvider, useTheme } from "./src/context/theme-context"
 import { ExamplesScreen } from "./src/screens/examples-screen"
 import { HomeScreen } from "./src/screens/home-screen"
+import { StateLessonScreen } from "./src/screens/state-lesson-screen"
 import { UsersScreen } from "./src/screens/users-screen"
 import { analyticsService } from "./src/services/analytics-service"
 
-type TabId = "examples" | "posts" | "users"
-
-export default function App() {
-  const [activeTab, setActiveTab] = useState<TabId>("examples")
+function AppContent() {
+  const [selectedLessonId, setSelectedLessonId] = useState<string>("lesson-1")
+  const { colors } = useTheme()
 
   useEffect(() => {
     analyticsService.logEvent("app_started")
-    console.log("🚀 App iniciado com arquitetura profissional!")
+    console.log(" App iniciado com arquitetura profissional!")
   }, [])
 
-  const handleTabChange = (tabId: string): void => {
-    setActiveTab(tabId as TabId)
-    analyticsService.logUserAction("tab_changed", { tab: tabId })
+  const handleLessonChange = (lessonId: string): void => {
+    setSelectedLessonId(lessonId)
+    const lesson = lessons.find((l) => l.id === lessonId)
+    analyticsService.logUserAction("lesson_changed", {
+      lesson_id: lessonId,
+      lesson_number: lesson?.number ?? 0,
+    })
   }
 
-  const renderScreen = (): React.ReactElement => {
-    switch (activeTab) {
-      case "examples":
+  const renderScreen = () => {
+    switch (selectedLessonId) {
+      case "lesson-1":
         return <ExamplesScreen />
-      case "posts":
-        return <HomeScreen />
-      case "users":
+      case "lesson-2":
         return <UsersScreen />
+      case "lesson-3":
+        return <HomeScreen />
+      case "lesson-4":
+        return <StateLessonScreen />
       default:
         return <ExamplesScreen />
     }
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      {renderScreen()}
-      <TabNavigation
-        tabs={[
-          { id: "examples", label: "Exemplos", icon: "🎓" },
-          { id: "posts", label: "Posts", icon: "📱" },
-          { id: "users", label: "Usuários", icon: "👥" },
-        ]}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
+      <View style={styles.header}>
+        <LessonSelector
+          lessons={lessons}
+          selectedLessonId={selectedLessonId}
+          onLessonChange={handleLessonChange}
+          backgroundColor={colors.card}
+          textColor={colors.text}
+        />
+      </View>
+      <View style={styles.content}>{renderScreen()}</View>
       <StatusBar style="auto" />
     </SafeAreaView>
+  )
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+  },
+  header: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#e0e0e0",
+  },
+  content: {
+    flex: 1,
   },
 })
