@@ -25,4 +25,10 @@ export const lessons: Lesson[] = [
     title: "Gerenciamento de Estado",
     description: "useState e Context API com tema dark/light",
   },
+  {
+    id: "lesson-5",
+    number: 6,
+    title: "Layout Mobile com Flexbox",
+    description: "Componentes básicos e estruturação visual",
+  },
 ];
