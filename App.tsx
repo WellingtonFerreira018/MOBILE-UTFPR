@@ -8,6 +8,7 @@ import { ExamplesScreen } from "./src/screens/examples-screen"
 import { HomeScreen } from "./src/screens/home-screen"
 import { LayoutLessonScreen } from "./src/screens/layout-lesson-screen"
 import { StateLessonScreen } from "./src/screens/state-lesson-screen"
+import { StorageLessonScreen } from "./src/screens/storage-lesson-screen"
 import { UsersScreen } from "./src/screens/users-screen"
 import { analyticsService } from "./src/services/analytics-service"
 
@@ -41,6 +42,8 @@ function AppContent() {
         return <StateLessonScreen />
       case "lesson-5":
         return <LayoutLessonScreen />
+      case "lesson-6":
+        return <StorageLessonScreen />
       default:
         return <ExamplesScreen />
     }

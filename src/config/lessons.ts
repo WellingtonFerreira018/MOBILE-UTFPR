@@ -31,4 +31,10 @@ export const lessons: Lesson[] = [
     title: "Layout Mobile com Flexbox",
     description: "Componentes básicos e estruturação visual",
   },
+  {
+    id: "lesson-6",
+    number: 12,
+    title: "Persistência Local",
+    description: "AsyncStorage: setItem, getItem e JSON",
+  },
 ];
