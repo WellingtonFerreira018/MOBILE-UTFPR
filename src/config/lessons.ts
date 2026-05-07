@@ -33,8 +33,14 @@ export const lessons: Lesson[] = [
   },
   {
     id: "lesson-6",
-    number: 12,
-    title: "Persistência Local",
+    number: 8,
+    title: "Persistência Local I",
     description: "AsyncStorage: setItem, getItem e JSON",
+  },
+  {
+    id: "lesson-7",
+    number: 9,
+    title: "Persistência Local II",
+    description: "SQLite: CRUD com banco de dados local",
   },
 ];
