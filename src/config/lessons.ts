@@ -43,4 +43,10 @@ export const lessons: Lesson[] = [
     title: "Persistência Local II",
     description: "SQLite: CRUD com banco de dados local",
   },
+  {
+    id: "lesson-8",
+    number: 10,
+    title: "GPS & Mapas",
+    description: "expo-location, react-native-maps e geolocalização",
+  },
 ];
