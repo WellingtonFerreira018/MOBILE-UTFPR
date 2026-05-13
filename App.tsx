@@ -8,6 +8,7 @@ import { ExamplesScreen } from "./src/screens/examples-screen"
 import { HomeScreen } from "./src/screens/home-screen"
 import { LayoutLessonScreen } from "./src/screens/layout-lesson-screen"
 import { StateLessonScreen } from "./src/screens/state-lesson-screen"
+import { CameraLessonScreen } from "./src/screens/camera-lesson-screen"
 import { GpsLessonScreen } from "./src/screens/gps-lesson-screen"
 import { SqliteLessonScreen } from "./src/screens/sqlite-lesson-screen"
 import { StorageLessonScreen } from "./src/screens/storage-lesson-screen"
@@ -50,6 +51,8 @@ function AppContent() {
         return <SqliteLessonScreen />
       case "lesson-8":
         return <GpsLessonScreen />
+      case "lesson-9":
+        return <CameraLessonScreen />
       default:
         return <ExamplesScreen />
     }

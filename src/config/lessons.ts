@@ -49,4 +49,10 @@ export const lessons: Lesson[] = [
     title: "GPS & Mapas",
     description: "expo-location, react-native-maps e geolocalização",
   },
+  {
+    id: "lesson-9",
+    number: 11,
+    title: "Câmera",
+    description: "expo-image-picker: capturar fotos e selecionar da galeria",
+  },
 ];
